@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootcamp Functions Widget</title>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@2.x.x/dist/alpine.min.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="functions">
+        <h2 style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: large;">WIDGETS FOR BOOTCAMP FUNCTIONS</h1>
+        <div>
+            <u>
+                <h4>1. Greet Function</h4>
+            </u>
+            <script src="greet.js" charset="utf-8"></script>
+            <div x-data="greet()">
+                <input type="text" x-model="name" placeholder="Enter your name">
+                <select x-model="selectedLanguage">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                    <option value="xi">Xitsonga</option>
+                    <option value="vt">Vietnamese</option>
+                </select>
+                <button @click="showGreeting = true">Greet</button>
+                <p x-show="showGreeting" x-text="getMessage(selectedLanguage)"></p>
+            </div>
+        </div>
+
+        <div>
+            <u>
+                <h4>2. TransportFee function</h4>
+            </u>
+            <script src="transportFee.js" charset="utf-8"></script>
+            <div x-data="transportFee()">
+                <label for="timeOfDay">Time of Day: </label>
+                <select id="timeOfDay" x-model="selectedTime">
+                    <option value="morning">Morning</option>
+                    <option value="afternoon">Afternoon</option>
+                    <option value="nightshift">Night Shift</option>
+                </select>
+
+                <button @click="calculateFee()">Calculate Fee</button>
+                <p x-show="fee !== null">
+                    Fee: <span x-text="fee"></span>
+                </p>
+            </div>
+        </div>
+
+        <div>
+            <u>
+                <h4>3. Total Phone Bill</h4>
+            </u>
+            <script src="totalPhoneBill.js" charset="utf-8"></script>            <div x-data="{ logs: '', total: 'R' }">
+                <input type="text" x-model="logs" placeholder="Enter phone log (comma separated)">
+                <button @click="calculateTotal()">Calculate Total</button>
+                <p>Total Phone Bill: <span x-text="total"></span></p>
+            </div>
+        </div>
+<!-- 
+       <div>
+                <u>
+                    <h4>4. Enough Airtime Checker</h4>
+                </u>
+                <script src="enoughAirtime.js" charset="utf-8"></script>            <div x-data="{ logs: '', total: 'R' }">                <div x-data="enoughAirtimeWidget()">
+                    <input type="text" x-model="projectedUsage" placeholder="Enter projected usage (comma separated)">
+                    <input type="number" x-model.number="airtimeAvailable" placeholder="Enter available airtime">
+                    <button @click="calculateAirtime()">Check Airtime</button>
+                    <p>Remaining Airtime: <span x-text="remainingAirtime"></span></p>
+                </div>
+            </div> -->
+
+<div>
+    <u><h4>4. Word Game</h4></u>
+    <script src="wordGame.js" charset="utf-8"></script>            <div x-data="{ logs: '', total: 'R' }">                <div x-data="enoughAirtimeWidget()">
+
+    <div x-data="wordGameWidget()">
+        <input type="text" x-model="sentence" placeholder="Enter a sentence">
+        <button @click="calculateWordStats()">Calculate Stats</button>
+        <p>Longest Word: <span x-text="longest"></span></p>
+        <p>Shortest Word: <span x-text="shortest"></span></p>
+        <p>Total Word Length: <span x-text="totalLength"></span></p>
+    </div>
+</div>
+<div>
+<div x-data="carDataWidget()">
+    <script src="mostPopularCar.js" charset="utf-8"></script>            <div x-data="{ logs: '', total: 'R' }">
+        <u><h4>5. The final bootcamp</h4></u>
+<!-- 
+    <label for="make">Enter Car Make:</label>
+    <input type="text" id="make" x-model="make">
+    <button @click="calculateMostPopularCar()">Most Popular Car</button>
+    <p x-show="mostPopularCar !== ''">Most Popular Car: <span x-text="mostPopularCar"></span></p>
+    
+    <label for="town">Enter Town Code:</label>
+    <input type="text" id="town" x-model="town">
+    <button @click="calculateNissansFromCK()">Nissans from CK</button>
+    <p x-show="nissansFromCKResult !== null">Number of Nissans from CK: <span x-text="nissansFromCKResult"></span></p>
+    
+    <label for="color">Enter Car Color:</label>
+    <input type="text" id="color" x-model="color">
+    <button @click="calculateMostBlueCars()">Most Blue Cars</button>
+    <p x-show="mostBlueCars !== ''">Most Blue Cars Registration Start: <span x-text="mostBlueCars"></span></p>
+    
+    <label for="townOrange">Enter Town Code for Orange Cars:</label>
+    <input type="text" id="townOrange" x-model="townOrange">
+    <button @click="calculateFewestOrangeCars()">Fewest Orange Cars</button>
+    <p x-show="fewestOrangeCars !== ''">Fewest Orange Cars Registration Start: <span x-text="fewestOrangeCars"></span></p>
+    
+    <label for="townPopular">Enter Town Code for Popular Models:</label>
+    <input type="text" id="townPopular" x-model="townPopular">
+    <button @click="calculateMostPopularModel()">Most Popular Model</button>
+    <p x-show="mostPopularModel !== ''">Most Popular Model: <span x-text="mostPopularModel"></span></p>
+    
+    <label for="townCL">Enter Town Code for CL Cars:</label>
+    <input type="text" id="townCL" x-model="townCL">
+    <button @click="calculateMostPopularCL()">Most Popular CL Model</button>
+    <p x-show="mostPopularCL !== ''">Most Popular CL Model: <span x-text="mostPopularCL"></span></p>
+    
+    <label for="townCF">Enter Town Code for CF Cars:</label>
+    <input type="text" id="townCF" x-model="townCF">
+    <button @click="calculateLeastPopularCF()">Least Popular CF Model</button>
+    <p x-show="leastPopularCF !== ''">Least Popular CF Model: <span x-text="leastPopularCF"></span></p>
+</div>
+
+</div> -->
+<div x-data="{ town: '', cars: [] }">
+    <input type="text" x-model="town" placeholder="Enter town name">
+    <button @click="getCars()">Get Cars</button>
+    <p x-show="cars.length === 0 && town.trim() !== ''">No cars found for '{{ town }}'</p>
+    <ul x-show="cars.length > 0">
+        <li x-for="car in cars">
+            {{ car.make }} - {{ car.model }} - {{ car.color }} ({{ car.reg_number }})
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+</body>
+
+</html>

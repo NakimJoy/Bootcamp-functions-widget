@@ -1,0 +1,21 @@
+body {
+    background-image: url(https://blog.logrocket.com/wp-content/uploads/2020/08/alpine-for-vue-developers.png);
+    background-size: cover;
+    height: 100%;
+    font-size: large;
+    background-repeat: no-repeat;
+    font-style: italic;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.functions {
+    border: 1px solid #000;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(249, 255, 255, 0.37);
+    border-radius: 5px;
+    text-align: center;
+}
